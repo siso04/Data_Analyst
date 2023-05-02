@@ -1,0 +1,68 @@
+---
+title: "mtcars Markdown"
+subtitle: "Test file"
+author: "Cesar Siso"
+date: "30/8/2022"
+output:
+  pdf_document: default
+  html_document: default
+  
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+ fig.width = 6,
+ fig.asp = 0.8,
+ out.width = "80%"
+)
+```
+# Análisis de base de datos FIFA2020
+
+## Abrir bibliotecas para el análisis
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+## Abrir la tabla de datos
+```{r}
+mtcars
+```
+
+## Ver la estructura de la tabla de datos
+
+* Nombre de columnas
+* Dimensión de la tabla
+* Estructura
+* Resumen
+```{r}
+ls(mtcars)
+dim(mtcars)
+str(mtcars)
+glimpse(mtcars)
+```
+## Seleccionar variables especifícas con select()
+
+```{r, echo=FALSE}
+variables <- mtcars %>% select(cyl, gear, hp, mpg)
+knitr::kable (variables, caption = "Variables Seleccionadas")
+
+```
+
+## Fitrar por una condicion
+
+```{r, echo=FALSE}
+fuertes <- mtcars %>% filter(hp >= 90) %>% arrange(desc(hp)) %>% head(5)
+fuertes
+```
+## Gráficos
+
+```{r}
+ggplot(data = mtcars, aes(cyl, mpg)) + geom_point()
+```
+```{r}
+ggplot(data = mtcars, aes(disp)) + geom_bar(fill = "red")
+```
+
+
